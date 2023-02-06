@@ -1,7 +1,14 @@
-export default function MenuLateral(){
-    return(
+import MenuItem from "@/components/template/MenuItem";
+import {IconeAjuste, IconeCasa, IconeSino} from "@/components/icons";
+
+export default function MenuLateral() {
+    return (
         <aside>
-            <h1>Menu</h1>
+          <ul>
+              <MenuItem url='/' texto="Início" icone={IconeCasa}/>
+              <MenuItem url='/ajustes' texto="Ajustes" icone={IconeAjuste}/>
+              <MenuItem url='/notificacoes' texto="Notificações" icone={IconeSino}/>
+          </ul>
         </aside>
     )
 }
