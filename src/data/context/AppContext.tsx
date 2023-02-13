@@ -1,17 +1,29 @@
-import {createContext} from "react";
+import {createContext, useState} from "react";
 
-const AppContext = createContext({
-    nome: null
-})
+type Tema = 'dark' | '';
 
-export function AppProvider(props){
-    return(
+interface AppContextProps {
+    tema?: Tema
+    alternarTema?: () => void
+}
+
+const AppContext = createContext<AppContextProps>({})
+
+export function AppProvider(props) {
+    const [tema, setTema] = useState<Tema>('')
+
+    function alternarTema() {
+        setTema(tema === '' ? 'dark' : '')
+    }
+
+    return (
         <AppContext.Provider value={{
-            nome:"Teste Context APi"
+            tema,
+            alternarTema
         }}>
             {props.children}
         </AppContext.Provider>
     )
 }
+
 export default AppContext;
-export const AppConsumer = AppContext.Consumer
